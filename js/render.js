@@ -7,14 +7,14 @@ const photosData = similarDescriptionPhotos();
 
 const fragmentPhotos = document.createDocumentFragment();
 
-photosData.forEach(({url, description, likes, comments}) => {
+photosData.forEach(({url, description, likes, comments, id}) => {
   const pictureElement = templatePicture.cloneNode(true);
 
   const pictureImg = pictureElement.querySelector('.picture__img');
   const pictureLikes = pictureElement.querySelector('.picture__likes');
   const pictureComments = pictureElement.querySelector('.picture__comments');
 
-
+  pictureElement.id = `photo-id-${id}`;
   pictureImg.src = url;
   pictureImg.alt = description;
   pictureLikes.textContent = likes;
@@ -24,3 +24,5 @@ photosData.forEach(({url, description, likes, comments}) => {
 });
 
 listPicture.appendChild(fragmentPhotos);
+
+export {photosData, listPicture};
