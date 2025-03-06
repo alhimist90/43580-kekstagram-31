@@ -1,12 +1,9 @@
 import { listPicture } from './render.js';
-import { renderModalPhoto } from './render_photo.js';
+import { renderModalPhoto, loadComments, commentsPhotoArray, commentsLoader} from './render_photo.js';
 import { isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButtonPhoto = document.querySelector('.big-picture__cancel');
-
-const countComment = document.querySelector('.social__comment-count');
-const commentsLoader = document.querySelector('.comments-loader');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -21,14 +18,21 @@ const openModalPhoto = (evt) => {
   if (evt.target.closest('.picture')) {
     bigPicture.classList.remove('hidden');
 
-    countComment.classList.add('hidden');
-    commentsLoader.classList.add('hidden');
-
     document.querySelector('body').classList.add('modal-open');
 
     renderModalPhoto(evt);
 
     document.addEventListener('keydown', onDocumentKeydown);
+
+    const loadCommentsFunction = loadComments(commentsPhotoArray);
+
+    loadCommentsFunction();
+
+    const loadCommentsClick = () => {
+      loadCommentsFunction();
+    };
+
+    commentsLoader.addEventListener('click', loadCommentsClick);
   }
 };
 
@@ -38,7 +42,17 @@ const closeModalPhoto = () => {
   document.querySelector('body').classList.remove('modal-open');
 
   document.removeEventListener('keydown', onDocumentKeydown);
+
+  const loadCommentsFunction = loadComments(commentsPhotoArray);
+
+  const loadCommentsClick = () => {
+    loadCommentsFunction();
+  };
+
+  commentsLoader.removeEventListener('click', loadCommentsClick);
 };
 
 listPicture.addEventListener('click', openModalPhoto);
 closeButtonPhoto.addEventListener('click', closeModalPhoto);
+
+export {closeButtonPhoto};
