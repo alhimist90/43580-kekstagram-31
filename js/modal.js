@@ -14,8 +14,8 @@ const onDocumentKeydown = (evt) => {
 };
 
 const openModalPhoto = (evt) => {
-  evt.preventDefault();
   if (evt.target.closest('.picture')) {
+    evt.preventDefault();
     bigPicture.classList.remove('hidden');
 
     document.querySelector('body').classList.add('modal-open');

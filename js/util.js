@@ -26,4 +26,6 @@ const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length 
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomIdFromRange, getRandomArrayElement, isEscapeKey};
+const getLowerCaseArray = (array) => array.map((value) => value.toLowerCase());
+
+export {getRandomInteger, getRandomIdFromRange, getRandomArrayElement, isEscapeKey, getLowerCaseArray};
