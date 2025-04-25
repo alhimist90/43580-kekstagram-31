@@ -1,4 +1,5 @@
 import { isEscapeKey } from './util.js';
+import { imagePreview } from './change-image.js';
 
 const loadButtonPhoto = document.querySelector('#upload-file');
 const loadFormPhoto = document.querySelector('#upload-select-image');
@@ -26,6 +27,8 @@ const closeFormPhotoModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 
   loadFormPhotoModal.classList.add('hidden');
+
+  imagePreview.removeAttribute('style');
 };
 
 loadButtonPhoto.addEventListener('input', openFormPhotoModal);

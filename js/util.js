@@ -22,10 +22,16 @@ const getRandomIdFromRange = (minValue, maxValue) => {
   };
 };
 
+const stringToNumber = (input) => {
+  const value = input.value;
+
+  return parseInt(value, 10);
+};
+
 const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const getLowerCaseArray = (array) => array.map((value) => value.toLowerCase());
 
-export {getRandomInteger, getRandomIdFromRange, getRandomArrayElement, isEscapeKey, getLowerCaseArray};
+export {getRandomInteger, getRandomIdFromRange, getRandomArrayElement, isEscapeKey, getLowerCaseArray, stringToNumber};
